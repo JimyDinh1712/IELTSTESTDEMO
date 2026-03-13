@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>IELTS Reading</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f2f2f2;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 25px;
+background:white;
+border-bottom:1px solid #ccc;
+}
+
+.logo{
+color:#e31c23;
+font-weight:bold;
+font-size:28px;
+}
+
+.user{
+font-size:15px;
+}
+
+.timer{
+font-size:16px;
+color:#333;
+}
+
+/* PART TITLE */
+
+.part{
+margin:15px;
+background:#e9e6de;
+padding:15px;
+border-radius:8px;
+}
+
+/* MAIN LAYOUT */
+
+.main{
+display:flex;
+height:70vh;
+margin:15px;
+border:1px solid #ddd;
+background:white;
+}
+
+/* PASSAGE */
+
+.passage{
+width:50%;
+padding:30px;
+overflow:auto;
+border-right:1px solid #ddd;
+line-height:1.6;
+}
+
+/* QUESTIONS */
+
+.questions{
+width:50%;
+padding:30px;
+overflow:auto;
+}
+
+/* QUESTION STYLE */
+
+input{
+border:1px solid #ccc;
+padding:6px;
+border-radius:4px;
+width:120px;
+}
+
+/* NAV BAR */
+
+.footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:white;
+border-top:1px solid #ddd;
+}
+
+.nav{
+display:flex;
+gap:6px;
+}
+
+.nav button{
+width:32px;
+height:32px;
+border:1px solid #ccc;
+background:white;
+cursor:pointer;
+}
+
+.nav button.active{
+background:#2e86de;
+color:white;
+}
+
+.submit{
+background:black;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="logo">IELTS</div>
+
+<div class="user">
+<b>Test taker ID:</b> Jimmy Dinh<br>
+Reading Test 1
+</div>
+
+<div class="timer" id="timer">
+59:59 remaining
+</div>
+
+</div>
+
+<!-- PART TITLE -->
+
+<div class="part">
+
+<h3>Part 1</h3>
+Answer questions 1-13.
+
+</div>
+
+<!-- MAIN SCREEN -->
+
+<div class="main">
+
+<!-- PASSAGE -->
+
+<div class="passage">
+
+<h1>The development of the silk industry</h1>
+
+<p>
+Silk, a natural fibre produced by a particular worm called a silkworm, has been used in clothing for many centuries...
+</p>
+
+<p>
+When silk was first discovered in China over 4,500 years ago it was reserved exclusively for the emperor...
+</p>
+
+<p>
+Gradually silk came into more general use and became one of the principal elements of the Chinese economy...
+</p>
+
+</div>
+
+<!-- QUESTIONS -->
+
+<div class="questions">
+
+<p><b>Complete the notes below.</b></p>
+
+<p>Choose <b>ONE WORD ONLY</b> from the passage.</p>
+
+<h3>Chinese silk</h3>
+
+<p>emperor wore <input id="q1"> silk indoors</p>
+
+<p>silk used in <input id="q2"></p>
+
+<p>silk also used as <input id="q3"></p>
+
+<p>common people later wore <input id="q4"></p>
+
+</div>
+
+</div>
+
+<!-- FOOTER NAVIGATION -->
+
+<div class="footer">
+
+<div>
+
+<div style="color:red;font-weight:bold">
+Developed by IELTS TA JUN
+</div>
+
+</div>
+
+<div class="nav" id="nav"></div>
+
+<div>
+
+<button class="submit">Submit</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* NAVIGATION */
+
+for(let i=1;i<=13;i++){
+
+let btn=document.createElement("button")
+
+btn.innerText=i
+
+btn.onclick=function(){
+
+document.getElementById("q"+i)?.focus()
+
+}
+
+document.getElementById("nav").appendChild(btn)
+
+}
+
+/* TIMER */
+
+let time=3599
+
+setInterval(function(){
+
+time--
+
+let m=Math.floor(time/60)
+let s=time%60
+
+document.getElementById("timer").innerText=
+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s)+" remaining"
+
+},1000)
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading Computer-Based Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+ <header class="test-header">
+        <div class="user-info">
+            <span class="user-icon">👤</span>
+            <span class="user-name">Candidate Name - Minh Phuc Cute </span>
+        </div>
+        <div class="timer-container">
+            <span class="clock-icon">⏰</span>
+            <span id="timer">30 minutes left</span>
+        </div>
+        <div class="settings-icons">⚙️ 🔊</div>
+    </header>
+<div class="global-audio-player">
+    <div class="audio-info">
+        <span class="audio-status">🎧 Listening Test - Continuous Audio</span>
+    </div>
+    <audio id="main-audio" autoplay>
+        <source src="audio/full-listening-test.mp3" type="audio/mpeg">
+    </audio>
+</div>
+<div id="highlight-menu" class="context-menu" style="display: none; position: absolute; z-index: 1000;">
+    <button onclick="handleHighlight()">Highlight</button>
+    <button onclick="handleClear()">Clear</button>
+</div>
+  <div class="part-banner">
+    <div class="banner-left">
+        <span id="current-part-label">Part 1</span>
+        <p>Listen to the audio and answer questions <span id="q-range">1 - 10</span></p>
+    </div>
+    
+</div>
+
+    <main class="test-container">
+    <div id="reading-pane"></div> 
+    
+    <div id="question-pane">
+        <div id="questions-container">
+            </div>
+    </div>
+</main>
+
+  <footer class="test-footer">
+    <div class="navigation-bar">
+        <div class="part-group">
+            <span>Part 1</span>
+            <div id="nav-part-1" class="dots"></div>
+        </div>
+        <div class="part-group">
+            <span>Part 2</span>
+            <div id="nav-part-2" class="dots"></div>
+        </div>
+        <div class="part-group">
+            <span>Part 3</span>
+            <div id="nav-part-3" class="dots"></div>
+        </div>
+        <div class="part-group">
+            <span>Part 4</span>
+            <div id="nav-part-4" class="dots"></div>
+        </div>
+    </div>
+    <button id="submit-btn" onclick="submitTest()">Finish Test</button>
+</footer>
+
+    <div id="highlight-menu" class="context-menu">
+        <button onclick="applyHighlight()">Highlight</button>
+        <button onclick="clearHighlight()">Clear</button>
+    </div>
+
+    <script src="data/passage1.js"></script>
+    <script src="data/passage2.js"></script>
+    <script src="data/passage3.js"></script>
+ 	<script src="data/passage4.js"></script>
+<script src="data/answers.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

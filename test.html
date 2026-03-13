@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IELTS Listening Test</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f3f3f3;
+}
+
+.topbar{
+background:#2c3e50;
+color:white;
+padding:10px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.timer{
+font-size:20px;
+font-weight:bold;
+}
+
+.container{
+display:flex;
+height:calc(100vh - 60px);
+}
+
+.left{
+width:70%;
+background:white;
+padding:30px;
+overflow:auto;
+position:relative;
+}
+
+.left::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background-image:url("bkleft1.JPG");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+opacity:0.15;  
+
+z-index:0;
+}
+
+/* để nội dung nằm trên hình */
+
+.left *{
+position:relative;
+z-index:1;
+}
+.right{
+width:30%;
+background:#fafafa;
+border-left:1px solid #ddd;
+padding:20px;
+}
+
+.navgrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:8px;
+}
+
+.navbtn{
+padding:10px;
+border:1px solid #ccc;
+background:white;
+cursor:pointer;
+}
+
+.answered{
+background:#27ae60;
+color:white;
+}
+
+h2{
+margin-top:40px;
+}
+
+.question{
+margin:10px 0;
+}
+
+input{
+border:none;
+border-bottom:1px dotted #333;
+padding:4px;
+width:120px;
+}
+
+table{
+border-collapse:collapse;
+width:100%;
+margin-top:20px;
+}
+
+td{
+border:1px solid #ddd;
+padding:10px;
+}
+
+.map img{
+width:500px;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+}
+
+.score{
+margin-top:20px;
+padding:10px;
+background:#ecf0f1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<div>IELTS Listening</div>
+
+<audio controls id="audio">
+<source src="audio.mp3">
+</audio>
+
+<div class="timer" id="timer">30:00</div>
+
+</div>
+
+<div class="container">
+
+<div class="left">
+
+<h2>SECTION 1</h2>
+
+<p><b>Questions 1-10</b><br>
+Complete the form below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER.</p>
+
+<h3>Tourism Survey</h3>
+
+<table>
+
+<tr>
+<td>Example</td>
+<td>Answer</td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>Robert Goddard</td>
+</tr>
+
+<tr>
+<td>Destination</td>
+<td>Melbourne</td>
+</tr>
+
+<tr>
+<td>First time visited Melbourne?</td>
+<td>1 <input id="q1" oninput="mark(1)"></td>
+</tr>
+
+<tr>
+<td>Best thing about the city</td>
+<td>2 <input id="q2" oninput="mark(2)"></td>
+</tr>
+
+<tr>
+<td>Favourite attraction</td>
+<td>3 <input id="q3" oninput="mark(3)"></td>
+</tr>
+
+<tr>
+<td>Best thing about dining options</td>
+<td>4 <input id="q4" oninput="mark(4)"> of food</td>
+</tr>
+
+<tr>
+<td>Method of transport to destination</td>
+<td>by 5 <input id="q5" oninput="mark(5)"></td>
+</tr>
+
+<tr>
+<td>Age group</td>
+<td>6 <input id="q6" oninput="mark(6)"></td>
+</tr>
+
+<tr>
+<td>Income level</td>
+<td>7 <input id="q7" oninput="mark(7)"></td>
+</tr>
+
+<tr>
+<td>Purpose of visit</td>
+<td>• on business<br>
+• 8 <input id="q8" oninput="mark(8)"></td>
+</tr>
+
+<tr>
+<td>Occupation</td>
+<td>• 9 <input id="q9" oninput="mark(9)"><br>
+• writer for a travel magazine</td>
+</tr>
+
+<tr>
+<td>Opinion about accommodation</td>
+<td>10 <input id="q10" oninput="mark(10)"></td>
+</tr>
+
+</table>
+
+<h2>SECTION 2</h2>
+
+<p><b>Questions 11-15</b><br>
+Label the map below.</p>
+
+<div class="map">
+<img src="map.jpg">
+</div>
+
+<p>11 Science Museum <input id="q11" oninput="mark(11)"></p>
+<p>12 National History Museum <input id="q12" oninput="mark(12)"></p>
+<p>13 Car Park <input id="q13" oninput="mark(13)"></p>
+<p>14 Shopping Mall <input id="q14" oninput="mark(14)"></p>
+<p>15 Primary School <input id="q15" oninput="mark(15)"></p>
+
+<p><b>Questions 16-20</b></p>
+
+<p>16 Car Park <input id="q16" oninput="mark(16)"></p>
+<p>17 Primary School <input id="q17" oninput="mark(17)"></p>
+<p>18 Science Museum <input id="q18" oninput="mark(18)"></p>
+<p>19 National History Museum <input id="q19" oninput="mark(19)"></p>
+<p>20 Shopping Mall <input id="q20" oninput="mark(20)"></p>
+
+<h2>SECTION 3</h2>
+
+<p><b>Questions 21-23</b></p>
+
+<p>21 The proposal will</p>
+
+<label><input type="radio" name="q21" onclick="mark(21)"> A be reviewed by two examiners</label><br> <label><input type="radio" name="q21" onclick="mark(21)"> B be added to the final grade</label><br> <label><input type="radio" name="q21" onclick="mark(21)"> C be returned with feedback</label>
+
+<p>22 The proposal will consist mostly of</p>
+
+<label><input type="radio" name="q22" onclick="mark(22)"> A topics</label><br> <label><input type="radio" name="q22" onclick="mark(22)"> B methods</label><br> <label><input type="radio" name="q22" onclick="mark(22)"> C results</label>
+
+<p>23 For the practice paper, the tutor has directed the students to</p>
+
+<label><input type="radio" name="q23" onclick="mark(23)"> A pay attention to time limits</label><br> <label><input type="radio" name="q23" onclick="mark(23)"> B write at least 6000 words</label><br> <label><input type="radio" name="q23" onclick="mark(23)"> C keep on topic</label>
+
+<p><b>Questions 24-30</b></p>
+
+<p>24 There is no need to <input id="q24" oninput="mark(24)"> lots of people.</p>
+<p>25 Pay attention to the <input id="q25" oninput="mark(25)"> of the final report.</p>
+<p>26 Prepare two <input id="q26" oninput="mark(26)">.</p>
+<p>27 The deadline of the final paper is <input id="q27" oninput="mark(27)"></p>
+<p>28 Students can <input id="q28" oninput="mark(28)"> their topics.</p>
+<p>29 Deliver a <input id="q29" oninput="mark(29)"> to the teacher.</p>
+<p>30 Outline of the <input id="q30" oninput="mark(30)">.</p>
+
+<h2>SECTION 4</h2>
+
+<p><b>Questions 31-40</b></p>
+
+<p>31 The <input id="q31" oninput="mark(31)"> that customers must travel affects buying probability.</p>
+
+<p>32 Advertising slogans easier if there is a <input id="q32" oninput="mark(32)"> played.</p>
+
+<p>33 Mandy’s Candy Store appeals to sense of <input id="q33" oninput="mark(33)"></p>
+
+<p>34 For digital products it is <input id="q34" oninput="mark(34)"> that is important</p>
+
+<p>35 Customer’s <input id="q35" oninput="mark(35)"> after experiencing the ad</p>
+
+<p>36 Ads displayed in the common <input id="q36" oninput="mark(36)"></p>
+
+<p>37 Very few young people buy <input id="q37" oninput="mark(37)"></p>
+
+<p>38 UNESCO site improves the <input id="q38" oninput="mark(38)"></p>
+
+<p>39 Best location for suntan lotion ads <input id="q39" oninput="mark(39)"></p>
+
+<p>40 Good scene for water purification ads <input id="q40" oninput="mark(40)"></p>
+
+<button onclick="submitTest()">Submit</button>
+
+<div class="score" id="score"></div>
+
+</div>
+<div class="right">
+
+<h3>Section 1</h3>
+<div class="navgrid" id="sec1"></div>
+
+<h3>Section 2</h3>
+<div class="navgrid" id="sec2"></div>
+
+<h3>Section 3</h3>
+<div class="navgrid" id="sec3"></div>
+
+<h3>Section 4</h3>
+<div class="navgrid" id="sec4"></div>
+
+</div>
+
+</div>
+
+<script>
+
+// ================= ANSWERS =================
+
+const answers = {
+1:"no",
+2:"amazing weather",
+3:"town hall",
+4:"variety",
+5:"plane",
+6:"older than 40",
+7:"mid-range",
+8:"tourism",
+9:"computer programmer",
+10:"good value",
+11:"b",
+12:"a",
+13:"e",
+14:"c",
+15:"d",
+16:"e",
+17:"g",
+18:"c",
+19:"d",
+20:"a",
+21:"c",
+22:"b",
+23:"a",
+24:"interview",
+25:"format",
+26:"copies",
+27:"may 11th",
+28:"change",
+29:"note",
+30:"procedures",
+31:"distance",
+32:"sound",
+33:"smell",
+34:"flexibility",
+35:"reaction",
+36:"native languages",
+37:"newspapers",
+38:"environment",
+39:"swimming pool",
+40:"national park"
+};
+
+// ================= NAVIGATION =================
+
+for(let i=1;i<=40;i++){
+
+let btn=document.createElement("button")
+
+btn.innerText=i
+btn.className="navbtn"
+btn.id="nav"+i
+
+btn.onclick=function(){
+document.getElementById("q"+i).scrollIntoView({behavior:"smooth"})
+}
+
+if(i<=10){
+document.getElementById("sec1").appendChild(btn)
+}
+else if(i<=20){
+document.getElementById("sec2").appendChild(btn)
+}
+else if(i<=30){
+document.getElementById("sec3").appendChild(btn)
+}
+else{
+document.getElementById("sec4").appendChild(btn)
+}
+
+}
+
+function mark(n){
+document.getElementById("nav"+n).classList.add("answered")
+}
+
+// ================= TIMER =================
+
+var time=1800
+
+setInterval(function(){
+
+time--
+
+let m=Math.floor(time/60)
+let s=time%60
+
+document.getElementById("timer").innerText=
+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s)
+
+},1000)
+
+// ================= BAND CALCULATION =================
+
+function getBand(score){
+
+if(score>=39) return 9
+if(score>=37) return 8.5
+if(score>=35) return 8
+if(score>=32) return 7.5
+if(score>=30) return 7
+if(score>=26) return 6.5
+if(score>=23) return 6
+if(score>=18) return 5.5
+if(score>=16) return 5
+if(score>=13) return 4.5
+if(score>=10) return 4
+return 3.5
+
+}
+
+// ================= SUBMIT =================
+
+function submitTest(){
+
+let score=0
+
+for(let i=1;i<=40;i++){
+
+let input=document.getElementById("q"+i)
+
+let user=""
+
+if(input){
+
+user=input.value.toLowerCase().trim()
+
+let correct=answers[i]
+
+if(user==correct){
+
+score++
+
+input.style.background="#c8f7c5"
+
+}else{
+
+input.style.background="#f7c5c5"
+
+let ans=document.createElement("div")
+
+ans.style.color="red"
+ans.style.fontSize="12px"
+ans.innerHTML="Correct: "+correct
+
+input.parentNode.appendChild(ans)
+
+}
+
+}
+
+// RADIO QUESTIONS (21-23)
+
+if(i==21 || i==22 || i==23){
+
+let radios=document.getElementsByName("q"+i)
+
+let selected=""
+
+radios.forEach((r,index)=>{
+
+if(r.checked){
+selected=String.fromCharCode(97+index)
+}
+
+})
+
+let correct=answers[i]
+
+if(selected==correct){
+
+score++
+
+}else{
+
+radios.forEach((r,index)=>{
+
+if(String.fromCharCode(97+index)==correct){
+
+r.parentNode.style.color="green"
+
+}
+
+})
+
+}
+
+}
+
+}
+
+// ================= RESULT =================
+
+let band=getBand(score)
+
+document.getElementById("score").innerHTML=
+
+"<b>Score: "+score+"/40</b><br>"+
+"<b>Band: "+band+"</b>"
+
+}
+
+</script>
+
+</body>
+</html>

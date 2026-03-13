@@ -1,0 +1,356 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>IELTS Reading Test</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 25px;
+background:white;
+border-bottom:1px solid #ccc;
+}
+
+.logo{
+color:#e21b22;
+font-size:28px;
+font-weight:bold;
+}
+
+.testinfo{
+font-size:15px;
+}
+
+.timer{
+font-size:16px;
+}
+
+/* PART BOX */
+
+.part{
+margin:15px;
+background:#e9e6de;
+padding:15px;
+border-radius:8px;
+}
+
+/* MAIN SCREEN */
+
+.main{
+display:flex;
+height:70vh;
+margin:15px;
+background:white;
+border:1px solid #ddd;
+}
+
+/* PASSAGE */
+
+.passage{
+width:50%;
+padding:30px;
+overflow:auto;
+line-height:1.7;
+border-right:1px solid #ddd;
+}
+
+/* QUESTION */
+
+.questions{
+width:50%;
+padding:30px;
+overflow:auto;
+}
+
+/* INPUT */
+
+input{
+border:1px solid #ccc;
+padding:6px;
+border-radius:4px;
+width:120px;
+}
+
+/* NAV BAR */
+
+.footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:white;
+border-top:1px solid #ddd;
+}
+
+.nav{
+display:flex;
+gap:5px;
+}
+
+.nav button{
+width:34px;
+height:34px;
+border:1px solid #bbb;
+background:white;
+cursor:pointer;
+}
+
+.nav button.answered{
+background:#2ecc71;
+color:white;
+}
+
+.nav button.flag{
+background:#f39c12;
+color:white;
+}
+
+.submit{
+background:black;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* FLAG BUTTON */
+
+.flagbtn{
+margin-left:10px;
+cursor:pointer;
+color:#f39c12;
+}
+
+/* REVIEW SCREEN */
+
+.review{
+display:none;
+padding:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">IELTS</div>
+
+<div class="testinfo">
+<b>Test taker ID:</b> Jimmy Dinh<br>
+Reading Test 1
+</div>
+
+<div class="timer" id="timer">
+60:00 remaining
+</div>
+
+</div>
+
+<div class="part">
+<h3>Part 1</h3>
+Answer questions 1-13
+</div>
+
+<div class="main">
+
+<!-- PASSAGE -->
+
+<div class="passage">
+
+<h1>The development of the silk industry</h1>
+
+<p>
+Silk, a natural fibre produced by a particular worm called a silkworm,
+has been used in clothing for many centuries.
+</p>
+
+<p>
+When silk was first discovered in China over 4,500 years ago it was
+reserved exclusively for the emperor.
+</p>
+
+<p>
+Gradually silk came into more general use and became one of the principal
+elements of the Chinese economy.
+</p>
+
+</div>
+
+<!-- QUESTIONS -->
+
+<div class="questions">
+
+<p><b>Complete the notes below.</b></p>
+<p>Choose <b>ONE WORD ONLY</b> from the passage.</p>
+
+<h3>Chinese silk</h3>
+
+<div>
+1. emperor wore <input id="q1" oninput="save(1)"> silk indoors
+<span class="flagbtn" onclick="flag(1)">⚑</span>
+</div><br>
+
+<div>
+2. silk used in <input id="q2" oninput="save(2)">
+<span class="flagbtn" onclick="flag(2)">⚑</span>
+</div><br>
+
+<div>
+3. silk used as <input id="q3" oninput="save(3)">
+<span class="flagbtn" onclick="flag(3)">⚑</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<div style="color:red;font-weight:bold">
+IELTS Practice System
+</div>
+
+<div class="nav" id="nav"></div>
+
+<button class="submit" onclick="submitTest()">
+Submit
+</button>
+
+</div>
+
+<div class="review" id="review">
+
+<h2>Review Answers</h2>
+
+<div id="answers"></div>
+
+</div>
+
+<script>
+
+/* NAVIGATION */
+
+for(let i=1;i<=40;i++){
+
+let btn=document.createElement("button")
+btn.innerText=i
+btn.id="nav"+i
+
+btn.onclick=function(){
+
+let q=document.getElementById("q"+i)
+
+if(q){
+q.scrollIntoView({behavior:"smooth"})
+q.focus()
+}
+
+}
+
+document.getElementById("nav").appendChild(btn)
+
+}
+
+/* SAVE ANSWER */
+
+function save(n){
+
+let v=document.getElementById("q"+n).value
+
+localStorage.setItem("q"+n,v)
+
+if(v!=""){
+document.getElementById("nav"+n).classList.add("answered")
+}
+
+}
+
+/* LOAD SAVED */
+
+for(let i=1;i<=40;i++){
+
+let v=localStorage.getItem("q"+i)
+
+if(v){
+let q=document.getElementById("q"+i)
+if(q) q.value=v
+}
+
+}
+
+/* FLAG */
+
+function flag(n){
+
+document.getElementById("nav"+n).classList.toggle("flag")
+
+}
+
+/* TIMER */
+
+let time=3600
+
+setInterval(function(){
+
+time--
+
+let m=Math.floor(time/60)
+let s=time%60
+
+document.getElementById("timer").innerText =
+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s)+" remaining"
+
+if(time<=0){
+submitTest()
+}
+
+},1000)
+
+/* SUBMIT */
+
+function submitTest(){
+
+document.querySelector(".main").style.display="none"
+document.querySelector(".footer").style.display="none"
+
+let out=""
+
+for(let i=1;i<=40;i++){
+
+let v=localStorage.getItem("q"+i)||""
+
+out+="Question "+i+": "+v+"<br>"
+
+}
+
+document.getElementById("answers").innerHTML=out
+document.getElementById("review").style.display="block"
+
+}
+
+</script>
+
+</body>
+
+</html>
+```
