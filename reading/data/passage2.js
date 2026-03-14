@@ -17,27 +17,132 @@ const passage2Data = {
         
         <p><strong>F</strong><br>Research in these fields is being conducted in laboratories around the world, with the London Zoo centre linked to this global network. Studies carried out in one centre can then be tested in others. The resulting young coral can then be displayed in the tank in Tiny Giants. ‘The crucial point is that the progress we make in making coral better able to survive in a warming world can be shown to the public and encourage them to believe that we can do something to save the planet’s reefs,’ said Pearce-Kelly. ‘Saving our coral reefs is now a critically important ecological goal.’</p>
     `,
-    questions: [
-        // Questions 14-19: Matching Headings
-        { id: 14, type: "multiple-choice", text: "Section A", options: ["i Tried and tested solutions", "ii Cooperation beneath the waves", "iii Working to lessen the problems", "iv Disagreement about the accuracy of a certain phrase", "v Two clear educational goals", "vi Promoting hope", "vii A warning of further trouble ahead"] },
-        { id: 15, type: "multiple-choice", text: "Section B", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
-        { id: 16, type: "multiple-choice", text: "Section C", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
-        { id: 17, type: "multiple-choice", text: "Section D", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
-        { id: 18, type: "multiple-choice", text: "Section E", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
-        { id: 19, type: "multiple-choice", text: "Section F", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
+   questions: [
+    // Header hướng dẫn cho phần Matching Headings
+    {
+        id: "header-14-19",
+        type: "instruction",
+        text: `
+            <div class="instruction-box">
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 14-19</h2>
+                <p>Reading Passage 2 has six sections, <strong>A-F</strong>.</p>
+                <p>Choose the correct heading for each section from the list of headings below.</p>
+                <p>Write the correct number, <strong>i-vii</strong>, in boxes 14-19 on your answer sheet.</p>
+                
+                <div class="list-headings" style="border: 1px solid #000; padding: 15px; margin: 20px 0; background: #fff;">
+                    <h3 style="text-align: center; text-decoration: underline; margin-bottom: 10px;">List of Headings</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li><strong>i</strong> Tried and tested solutions</li>
+                        <li><strong>ii</strong> Cooperation beneath the waves</li>
+                        <li><strong>iii</strong> Working to lessen the problems</li>
+                        <li><strong>iv</strong> Disagreement about the accuracy of a certain phrase</li>
+                        <li><strong>v</strong> Two clear educational goals</li>
+                        <li><strong>vi</strong> Promoting hope</li>
+                        <li><strong>vii</strong> A warning of further trouble ahead</li>
+                    </ul>
+                </div>
+            </div>
+        `
+    },
+    // Các câu hỏi Matching Heading
+    { id: 14, type: "multiple-choice", text: "Section A", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
+    { id: 15, type: "multiple-choice", text: "Section B", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
+    { id: 16, type: "multiple-choice", text: "Section C", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
+    { id: 17, type: "multiple-choice", text: "Section D", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
+    { id: 18, type: "multiple-choice", text: "Section E", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
+    { id: 19, type: "multiple-choice", text: "Section F", options: ["i", "ii", "iii", "iv", "v", "vi", "vii"] },
 
-        // Questions 20-21: Multiple Response
-        { id: 20, type: "multiple-choice", text: "Which cause of damage is mentioned? (20-21 Choose TWO)", options: ["A rising number of extreme storms", "B removal of too many fish", "C contamination of the sea from waste", "D increased disease", "E alterations in the usual flow of water"] },
-        { id: 21, type: "multiple-choice", text: "Which second cause of damage is mentioned?", options: ["A", "B", "C", "D", "E"] },
+       // Header hướng dẫn cho Multiple Response
+    {
+        id: "header-20-21",
+        type: "instruction",
+        text: `
+            <div class="instruction-box" style="margin-top: 25px;">
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 20 and 21</h2>
+                <p>Choose <strong>TWO</strong> letters, <strong>A-E</strong>.</p>
+                <p>Write the correct letters in boxes 20 and 21 on your answer sheet.</p>
+                <p style="margin-top: 10px; font-weight: bold;">Which TWO of the following causes of damage to coral reefs are mentioned in the text?</p>
+            </div>
+        `
+    },
+    { 
+        id: 20, 
+        type: "multiple-choice", 
+        text: "", // Để trống text vì đã có ở phần hướng dẫn
+        options: [
+            "A rising number of extreme storms", 
+            "B removal of too many fish", 
+            "C contamination of the sea from waste", 
+            "D increased disease", 
+            "E alterations in the usual flow of water"
+        ] 
+    },
+    { 
+        id: 21, 
+        type: "multiple-choice", 
+        text: "", 
+        options: [
+            "A rising number of extreme storms", 
+            "B removal of too many fish", 
+            "C contamination of the sea from waste", 
+            "D increased disease", 
+            "E alterations in the usual flow of water"
+        ] 
+    },
 
-        // Questions 22-23: Multiple Response
-        { id: 22, type: "multiple-choice", text: "Which statement is true of researchers? (22-23 Choose TWO)", options: ["A hoping to expand numbers of corals bred", "B want to identify corals that cope well", "C looking at creating artificial reefs", "D trying methods to speed up reproduction", "E investigating materials to protect reefs"] },
-        { id: 23, type: "multiple-choice", text: "Which second statement is true of researchers?", options: ["A", "B", "C", "D", "E"] },
+    // Bạn có thể làm tương tự cho câu 22-23 (Choose TWO)
+    {
+        id: "header-22-23",
+        type: "instruction",
+        text: `
+            <div class="instruction-box" style="margin-top: 25px;">
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 22 and 23</h2>
+                <p>Choose <strong>TWO</strong> letters, <strong>A-E</strong>.</p>
+                <p style="margin-top: 10px; font-weight: bold;">Which TWO of the following are mentioned as goals of the researchers?</p>
+            </div>
+        `
+    },
+    { 
+        id: 22, 
+        type: "multiple-choice", 
+        text: "", 
+        options: [
+            "A hoping to expand numbers of corals bred", 
+            "B want to identify corals that cope well", 
+            "C looking at creating artificial reefs", 
+            "D trying methods to speed up reproduction", 
+            "E investigating materials to protect reefs"
+        ] 
+    },
+    { 
+        id: 23, 
+        type: "multiple-choice", 
+        text: "", 
+        options: [
+         "A hoping to expand numbers of corals bred", 
+            "B want to identify corals that cope well", 
+            "C looking at creating artificial reefs", 
+            "D trying methods to speed up reproduction", 
+            "E investigating materials to protect reefs"
+        ] 
+    },
 
         // Questions 24-26: Sentence Completion
-        { id: 24, type: "text", text: "Corals have a number of ____________ which they use to collect their food." },
-        { id: 25, type: "text", text: "Algae gain ____________ from being inside the coral." },
-        { id: 26, type: "text", text: "Increases in the warmth of the sea water can remove the ____________ from coral." }
+  {
+        id: "header-24-26",
+        type: "instruction",
+        text: `
+            <div class="instruction-box" style="margin-top: 25px;">
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 24-26</h2>
+		<p>Complete the sentences below.</p>
+                <p>Choose <strong>ONE WORD ONLY</strong> from the passage for each answer.</p>
+            </div>
+        `
+    },
+
+        { id: 24, type: "text", text: "24. Corals have a number of ____________ which they use to collect their food." },
+        { id: 25, type: "text", text: "25. Algae gain ____________ from being inside the coral." },
+        { id: 26, type: "text", text: "26. Increases in the warmth of the sea water can remove the ____________ from coral." }
     ]
 
 };
