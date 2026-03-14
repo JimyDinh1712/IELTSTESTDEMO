@@ -24,52 +24,43 @@ const passage1Data = {
 
     `,
     questions: [
-       // Questions 1–7: Note Completion
-        { id: 1, type: "text", text: "People conserved the nutritional value of (1) ____________, using a method of freezing then drying. (2,000 years ago, South America)" },
-        { id: 2, type: "text", text: "(2) ____________ was kept cool by ice during transportation in specially adapted trains. (1851, USA)" },
-        { id: 3, type: "text", text: "Two kinds of (3) ____________ were the first frozen food shipped to England. (1880, Australia)" },
-        { id: 4, type: "text", text: "Clarence Birdseye introduced quick-freezing methods, so that (4) ____________ did not spoil the food." },
-        { id: 5, type: "text", text: "Birdseye used packaging products with (5) ____________ so the product was visible." },
-        { id: 6, type: "text", text: "Frozen food became popular in the early 1940s because of a shortage of (6) ____________." },
-        { id: 7, type: "text", text: "By the 1950s, a large number of homes now had a (7) ____________." },
-// Questions 8–13: TRUE/FALSE/NOT GIVEN
-        { 
-            id: 8, 
-            type: "multiple-choice", 
-            text: "The ice transportation business made some Boston ship owners very wealthy in the early 1800s.", 
-            options: ["TRUE", "FALSE", "NOT GIVEN"] 
+        // Phần header hướng dẫn 1-7
+        {
+            id: "header-1-7",
+            type: "instruction",
+            text: `
+                <div class="instruction-box">
+                    <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 1-7</h2>
+                    <p>Complete the notes below.</p>
+                    <p>Choose <strong>ONE WORD ONLY</strong> from the passage for each answer.</p>
+                    <p>Write your answers in boxes 1-7 on your answer sheet.</p>
+                    <h2 style="text-align:center; margin: 20px 0; font-size: 1.4rem;">The history of frozen food</h2>
+                </div>
+            `
         },
-        { 
-            id: 9, 
-            type: "multiple-choice", 
-            text: "A disadvantage of the freezing process invented in Australia was that it affected the taste of food.", 
-            options: ["TRUE", "FALSE", "NOT GIVEN"] 
-        },
-        { 
-            id: 10, 
-            type: "multiple-choice", 
-            text: "Clarence Birdseye travelled to Labrador in order to learn how the Inuit people froze fish.", 
-            options: ["TRUE", "FALSE", "NOT GIVEN"] 
-        },
-        { 
-            id: 11, 
-            type: "multiple-choice", 
-            text: "Swanson Foods invested a great deal of money in the promotion of the TV Dinner.", 
-            options: ["TRUE", "FALSE", "NOT GIVEN"] 
-        },
-        { 
-            id: 12, 
-            type: "multiple-choice", 
-            text: "Swanson Foods developed a new style of container for the launch of the TV Dinner.", 
-            options: ["TRUE", "FALSE", "NOT GIVEN"] 
-        },
-        { 
-            id: 13, 
-            type: "multiple-choice", 
-            text: "The US frozen food industry is currently the largest in the world.", 
-            options: ["TRUE", "FALSE", "NOT GIVEN"] 
-        }
+        // Câu hỏi 1-7 được cấu trúc lại theo từng mốc thời gian
+        { id: 1, type: "text", label: "2,000 years ago, South America", text: "People conserved the nutritional value of (1) ____________, using a method of freezing then drying." },
+        { id: 2, type: "text", label: "1851, USA", text: "(2) ____________ was kept cool by ice during transportation in specially adapted trains." },
+        { id: 3, type: "text", label: "1880, Australia", text: "Two kinds of (3) ____________ were the first frozen food shipped to England." },
+        
+        { id: "group-birdseye", type: "instruction", text: "<strong>1917 onwards, USA</strong>" },
+        { id: 4, type: "text", sub: true, text: "Clarence Birdseye introduced innovations including: <ul style='margin-left: 20px; margin-top: 10px;'><li>quick-freezing methods, so that (4) ____________ did not spoil the food.</li>" },
+        { id: 5, type: "text", sub: true, text: "<li>packaging products with (5) ____________ so the product was visible.</li></ul>" },
+        
+        { id: 6, type: "text", label: "Early 1940s, USA", text: "Frozen food became popular because of a shortage of (6) ____________." },
+        { id: 7, type: "text", label: "1950s, USA", text: "A large number of homes now had a (7) ____________." },
 
-
+        // Header cho phần 8-13
+        {
+            id: "header-8-13",
+            type: "instruction",
+            text: `<div class="instruction-box" style="margin-top:30px;"><h2>Questions 8-13</h2><p>Do the following statements agree with the information given in Reading Passage 1?</p></div>`
+        },
+        { id: 8, type: "multiple-choice", text: "The ice transportation business made some Boston ship owners very wealthy in the early 1800s.", options: ["TRUE", "FALSE", "NOT GIVEN"] },
+        { id: 9, type: "multiple-choice", text: "A disadvantage of the freezing process invented in Australia was that it affected the taste of food.", options: ["TRUE", "FALSE", "NOT GIVEN"] },
+        { id: 10, type: "multiple-choice", text: "Clarence Birdseye travelled to Labrador in order to learn how the Inuit people froze fish.", options: ["TRUE", "FALSE", "NOT GIVEN"] },
+        { id: 11, type: "multiple-choice", text: "Swanson Foods invested a great deal of money in the promotion of the TV Dinner.", options: ["TRUE", "FALSE", "NOT GIVEN"] },
+        { id: 12, type: "multiple-choice", text: "Swanson Foods developed a new style of container for the launch of the TV Dinner.", options: ["TRUE", "FALSE", "NOT GIVEN"] },
+        { id: 13, type: "multiple-choice", text: "The US frozen food industry is currently the largest in the world.", options: ["TRUE", "FALSE", "NOT GIVEN"] }
     ]
 };
