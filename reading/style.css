@@ -48,7 +48,35 @@ input, textarea {
     background-color: #f0f4f8;
     border-color: #a0b4d0;
 }
+/* Input điền từ chuẩn IELTS Computer */
+.input-inline {
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 120px;
+    text-align: center;
+    background: transparent;
+    outline: none;
+    font-weight: bold;
+    color: #0066cc;
+}
 
+.input-inline:focus {
+    border-bottom: 2px solid #0066cc;
+}
+
+/* Thụt lề cho các câu hỏi con */
+.sub-question {
+    padding-left: 25px !important;
+    border: none !important;
+    background: none !important;
+}
+
+/* Xóa viền cho các câu hỏi dạng note */
+.q-item:not(:has(.option-wrapper)) {
+    border: none;
+    background: none;
+    margin-bottom: 5px;
+}
 /* Hiệu ứng khi đáp án được chọn (Active) */
 .option-wrapper:has(input:checked), 
 .option-wrapper.active {
@@ -192,4 +220,117 @@ input[type="submit"]:active {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* Đổ bóng nhỏ hơn khi nhấn */
                 inset 0 1px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(1px); /* Nút lún xuống 1 chút tạo cảm giác bấm */
+}
+/* Style cho phần hướng dẫn đầu bài */
+.instruction-box {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.instruction-box h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.instruction-box p { font-style: italic; font-size: 0.9rem; margin-bottom: 3px; }
+
+/* Nhãn thời gian */
+.time-label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #000;
+}
+
+/* Input nằm cùng dòng với text */
+.input-inline {
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 150px;
+    text-align: center;
+    background: transparent;
+    outline: none;
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.input-inline:focus {
+    border-bottom: 2px solid #0066cc;
+}
+
+/* Thụt đầu dòng cho các ý con của Clarence Birdseye */
+.sub-question {
+    padding-left: 30px !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.sub-question ul {
+    list-style-type: disc;
+}
+/* Container cho câu hỏi Matching Headings */
+.q-item:has(.option-wrapper span:matches(i, ii, iii)) {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+/* Dàn hàng ngang các nút chọn i, ii, iii... */
+.q-item:has(.option-wrapper span:matches(i, ii, iii)) .option-wrapper {
+    display: inline-flex;
+    margin-bottom: 0;
+    padding: 5px 10px;
+    min-width: 45px;
+    justify-content: center;
+}
+
+/* Hiển thị câu hỏi (ví dụ: Section A) ở bên trái các nút bấm */
+.q-item:has(.option-wrapper span:matches(i, ii, iii)) p {
+    margin-bottom: 0;
+    min-width: 100px;
+    font-weight: bold;
+}
+/* 27-33 */
+/* Tối ưu cho dạng Matching (A, B, C) */
+.q-item:has(.option-wrapper span:matches(A, B, C)) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Container chứa các nút option */
+.q-item:has(.option-wrapper span:matches(A, B, C)) .options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Nút chọn A, B, C nhỏ gọn */
+.q-item:has(.option-wrapper span:matches(A, B, C)) .option-wrapper {
+    display: inline-flex;
+    width: auto;
+    min-width: 50px;
+    padding: 8px 15px;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 0;
+}
+/* Container cho câu hỏi Matching Ending */
+.q-item:has(.option-wrapper span:matches(A, B, C, D, E)) {
+    margin-bottom: 20px;
+}
+
+.q-item:has(.option-wrapper span:matches(A, B, C, D, E)) p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Nút chọn A, B, C, D, E dàn hàng ngang */
+.q-item:has(.option-wrapper span:matches(A, B, C, D, E)) .option-wrapper {
+    display: inline-flex;
+    margin-right: 10px;
+    min-width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
