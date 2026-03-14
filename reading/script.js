@@ -19,51 +19,64 @@ const questionRanges = [
     { start: 14, end: 26 },
     { start: 27, end: 40 }
 ];
-
 function loadPassage(index) {
     currentIdx = index;
     const data = allPassages[index];
-    const range = questionRanges[index]; // Lấy phạm vi tương ứng với part
+    const range = questionRanges[index];
 
-    // 1. Cập nhật tiêu đề bài đọc và nội dung
     document.getElementById('passage-title').innerText = data.title;
     document.getElementById('passage-text').innerHTML = data.content;
-
-    // 2. Cập nhật Banner: Part X và Questions X - Y
     document.getElementById('current-part-label').innerText = `Part ${index + 1}`;
     document.getElementById('q-range').innerText = `${range.start} - ${range.end}`;
     
-    // 3. Cập nhật câu hỏi bên phải
     const container = document.getElementById('questions-container');
     container.innerHTML = '';
     
     data.questions.forEach(q => {
         const div = document.createElement('div');
-        div.className = `q-item ${userAnswers[q.id] ? 'selected' : ''}`;
         
-        let html = `<p><strong>${q.id}</strong> ${q.text}</p>`;
+        // 1. Xử lý phần hướng dẫn (Instruction)
+        if (q.type === 'instruction') {
+            div.className = 'instruction-wrapper';
+            div.innerHTML = q.text;
+            container.appendChild(div);
+            return;
+        }
+
+        // 2. Xử lý nhãn mốc thời gian (Label)
+        if (q.label) {
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'time-label';
+            labelDiv.style = "margin-top: 15px; font-weight: bold;";
+            labelDiv.innerHTML = q.label;
+            container.appendChild(labelDiv);
+        }
+
+        // 3. Xử lý câu hỏi
+        div.className = `q-item ${userAnswers[q.id] ? 'selected' : ''} ${q.sub ? 'sub-question' : ''}`;
         
+        let html = '';
         if (q.type === 'multiple-choice') {
+            html += `<p><strong>${q.id}</strong> ${q.text}</p>`;
             q.options.forEach(opt => {
                 const isSelected = userAnswers[q.id] === opt;
-                const checked = isSelected ? 'checked' : '';
-                // Thêm class option-wrapper đã tạo ở bước trước
                 html += `
                     <label class="option-wrapper ${isSelected ? 'active' : ''}">
-                        <input type="radio" name="q${q.id}" 
-                               onchange="save(${q.id}, '${opt}')" ${checked}>
+                        <input type="radio" name="q${q.id}" onchange="save(${q.id}, '${opt}')" ${isSelected ? 'checked' : ''}>
                         <span>${opt}</span>
                     </label>`;
             });
-        } else {
+        } else if (q.type === 'text') {
             const val = userAnswers[q.id] || '';
-            html += `<input type="text" class="input-text" value="${val}" oninput="save(${q.id}, this.value)">`;
+            // Regex này sẽ thay thế cụm "(số) _____" thành ô input
+            const formattedText = q.text.replace(/\(\d+\) ____________/, `<strong>${q.id}</strong> <input type="text" class="input-inline" value="${val}" oninput="save(${q.id}, this.value)">`);
+            html += `<p>${formattedText}</p>`;
         }
+
         div.innerHTML = html;
         container.appendChild(div);
     });
 }
-
 function save(id, val) {
     userAnswers[id] = val;
     renderFooter();
@@ -202,22 +215,97 @@ function showHighlightMenu(x, y) {
     menu.style.left = x + 'px';
     menu.style.top = y + 'px';
 }
-
+const correctAnswers = {
+    1: "potatoes", 2: "butter", 3: "meat", 4: "crystals", 5: "cellophane", 6: "tin", 7: "refrigerator",
+    8: "TRUE", 9: "FALSE", 10: "TRUE", 11: "FALSE", 12: "NOT GIVEN", 13: "TRUE", // Lưu ý sửa lại đúng theo data thực tế của bạn
+    14: "v", 15: "ii", 16: "iv", 17: "vii", 18: "iii", 19: "vi",
+    // Cặp câu hỏi chọn 2 (Thứ tự không quan trọng)
+    20: ["C", "E"], 21: ["C", "E"],
+    22: ["B", "D"], 23: ["B", "D"],
+    24: "tentacles", 25: "protection", 26: "colour",
+    27: "A", 28: "C", 29: "B", 30: "A", 31: "B", 32: "A", 33: "C",
+    34: "C", 35: "B", 36: "D", 37: "B", 38: "C", 39: "B", 40: "C"
+};
 function submitTest() {
-    // Xác nhận với người dùng
-    const confirmSubmit = confirm("Bạn có chắc chắn muốn nộp bài? Bạn sẽ không thể sửa đáp án sau khi nộp.");
+    const confirmSubmit = confirm("Bạn có chắc chắn muốn nộp bài? Hệ thống sẽ chấm điểm ngay lập tức.");
     
     if (confirmSubmit) {
-        // Dừng timer
-        // clearInterval(countdown); // Bạn cần biến countdown là biến toàn cục
-        
-        // Tính điểm hoặc hiển thị thông báo
-        alert("Bài làm của bạn đã được ghi nhận!");
-        console.log("Đáp án của thí sinh:", userAnswers);
-        
-        // Có thể chuyển hướng sang trang kết quả
-        // window.location.href = "results.html";
+        let score = 0;
+        const totalQuestions = 40;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+            let userAns = userAnswers[i] ? userAnswers[i].trim().toLowerCase() : "";
+            
+            // Xử lý các câu hỏi chọn 2 đáp án (20, 21, 22, 23)
+            if ([20, 21, 22, 23].includes(i)) {
+                const groupAnswers = correctAnswers[i].map(a => a.toLowerCase());
+                // Nếu đáp án của người dùng nằm trong tập đáp án đúng
+                if (groupAnswers.includes(userAns)) {
+                    // Kiểm tra xem người dùng có chọn trùng 1 đáp án cho cả 2 ô không
+                    const otherId = (i % 2 === 0) ? i + 1 : i - 1;
+                    const otherAns = userAnswers[otherId] ? userAnswers[otherId].trim().toLowerCase() : "";
+                    
+                    if (userAns !== otherAns) {
+                        score++;
+                    } else if (i === 20 || i === 22) { // Chỉ cộng điểm 1 lần nếu chọn trùng
+                        score += 0; 
+                    }
+                }
+            } 
+            // Xử lý các câu điền từ và trắc nghiệm thông thường
+            else {
+                let correctAns = correctAnswers[i].toString().toLowerCase();
+                if (userAns === correctAns) {
+                    score++;
+                }
+            }
+        }
+
+        // Hiển thị kết quả
+        showResultModal(score, totalQuestions);
     }
+}
+
+function showResultModal(score, total) {
+    // Dừng timer (nếu bạn đã khai báo countdown toàn cục)
+    if (typeof countdown !== 'undefined') clearInterval(countdown);
+
+    // Tạo một thông báo đẹp mắt
+    const resultDiv = document.createElement('div');
+    resultDiv.style = `
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        background: white; padding: 30px; border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5); z-index: 10000; text-align: center;
+        min-width: 300px; font-family: Arial, sans-serif;
+    `;
+    
+    resultDiv.innerHTML = `
+        <h2 style="color: #d32f2f;">Test Completed!</h2>
+        <p style="font-size: 1.2rem;">Your Score: <strong style="font-size: 2rem; color: #1976d2;">${score}/${total}</strong></p>
+        <p>Estimated Band Score: <strong>${calculateBand(score)}</strong></p>
+        <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; cursor: pointer; background: #404040; color: white; border: none; border-radius: 5px;">Try Again</button>
+    `;
+
+    document.body.appendChild(resultDiv);
+    
+    // Thêm lớp phủ nền tối
+    const overlay = document.createElement('div');
+    overlay.style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;";
+    document.body.appendChild(overlay);
+}
+
+// Hàm tính Band Score Reading Academic tham khảo
+function calculateBand(score) {
+    if (score >= 39) return "9.0";
+    if (score >= 37) return "8.5";
+    if (score >= 35) return "8.0";
+    if (score >= 33) return "7.5";
+    if (score >= 30) return "7.0";
+    if (score >= 27) return "6.5";
+    if (score >= 23) return "6.0";
+    if (score >= 19) return "5.5";
+    if (score >= 15) return "5.0";
+    return "Below 5.0";
 }
 
 // --- TIMER MM:SS ---
