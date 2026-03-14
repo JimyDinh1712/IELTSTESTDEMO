@@ -33,21 +33,83 @@ const passage3Data = {
         <p><small>** singularity: the point when robots will be able to start creating ever more sophisticated versions of themselves</small></p>
     `,
     questions: [
-        // Questions 27–33: Matching Experts
-        { id: 27, type: "multiple-choice", text: "For our own safety, humans will need to restrict the abilities of robots.", options: ["A Martin Rees", "B Daniel Wolpert", "C Kathleen Richardson"] },
-        { id: 28, type: "multiple-choice", text: "The risk of robots harming us is less serious than humans believe it to be.", options: ["A", "B", "C"] },
-        { id: 29, type: "multiple-choice", text: "It will take many decades for robot intelligence to be as imaginative as human intelligence.", options: ["A", "B", "C"] },
-        { id: 30, type: "multiple-choice", text: "We may have to start considering whether we are treating robots fairly.", options: ["A", "B", "C"] },
-        { id: 31, type: "multiple-choice", text: "Robots are probably of more help to us on Earth than in space.", options: ["A", "B", "C"] },
-        { id: 32, type: "multiple-choice", text: "The ideas in high-quality science fiction may prove to be just as accurate as those found in the work of mediocre scientists.", options: ["A", "B", "C"] },
-        { id: 33, type: "multiple-choice", text: "There are those who look forward to robots developing greater intelligence.", options: ["A", "B", "C"] },
+        {
+            id: "header-27-33",
+            type: "instruction",
+            text: `
+                <div class="instruction-box">
+                    <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 27-33</h2>
+                    <p>Look at the following statements (Questions 27-33) and the list of people below.</p>
+                    <p>Match each statement with the correct person, <strong>A, B</strong> or <strong>C</strong>.</p>
+                    <p>Write the correct letter, <strong>A, B</strong> or <strong>C</strong>, in boxes 27-33 on your answer sheet.</p>
+                    <p><strong>NB</strong> You may use any letter more than once.</p>
 
-        // Questions 34–36: Sentence Completion (Matching Endings)
-        { id: 34, type: "multiple-choice", text: "Richardson and Rees express similar views regarding the ethical aspect of:", options: ["A robots to explore outer space.", "B advances made in machine intelligence so far.", "C changes made to other planets for our own benefit.", "D the harm already done by artificial intelligence."] },
-        { id: 35, type: "multiple-choice", text: "Rees and Wolpert share an opinion about the extent of:", options: ["A", "B", "C", "D"] },
-        { id: 36, type: "multiple-choice", text: "Wolpert disagrees with Richardson on the question of:", options: ["A", "B", "C", "D"] },
+                    <div class="list-names" style="border: 1px solid #000; padding: 15px; margin: 20px 0; background: #f9f9f9; width: fit-content; min-width: 300px;">
+                        <h3 style="margin-top: 0; text-decoration: underline;">List of People</h3>
+                        <ul style="list-style: none; padding-left: 0; margin-bottom: 0;">
+                            <li><strong>A</strong> Martin Rees</li>
+                            <li><strong>B</strong> Daniel Wolpert</li>
+                            <li><strong>C</strong> Kathleen Richardson</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        // Các câu hỏi Matching Name
+        { id: 27, type: "multiple-choice", text: "It is better to use robots to find resources on Earth than on other planets.", options: ["A", "B", "C"] },
+        { id: 28, type: "multiple-choice", text: "There is a moral issue involved in using the word ‘colonisation’.", options: ["A", "B", "C"] },
+        { id: 29, type: "multiple-choice", text: "We should treat other planets in the same way as we treat the Antarctic.", options: ["A", "B", "C"] },
+        { id: 30, type: "multiple-choice", text: "The term ‘robot’ is often used in a way that is not strictly accurate.", options: ["A", "B", "C"] },
+        { id: 31, type: "multiple-choice", text: "The use of robots on other planets is a more practical idea than terraforming them.", options: ["A", "B", "C"] },
+        { id: 32, type: "multiple-choice", text: "People’s expectations of what robots can do are often based on fiction.", options: ["A", "B", "C"] },
+        { id: 33, type: "multiple-choice", text: "It is important to remember that robots do not have any feelings.", options: ["A", "B", "C"] },
 
+       {
+        id: "header-34-36",
+        type: "instruction",
+        text: `
+            <div class="instruction-box" style="margin-top: 25px;">
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px;">Questions 34-36</h2>
+                <p>Complete each sentence with the correct ending, <strong>A-E</strong>, below.</p>
+                <p>Write the correct letter, <strong>A-E</strong>, in boxes 34-36 on your answer sheet.</p>
+
+                <div class="list-endings" style="border: 1px solid #000; padding: 15px; margin: 20px 0; background: #fff;">
+                    <h3 style="margin-top: 0; text-decoration: underline;">List of Endings</h3>
+                    <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+                        <li><strong>A</strong> is more achievable than trying to make planets habitable for humans.</li>
+                        <li><strong>B</strong> should be avoided because of the potential for ethical problems.</li>
+                        <li><strong>C</strong> would be more beneficial if carried out on Earth.</li>
+                        <li><strong>D</strong> might lead to robots having too much influence over our lives.</li>
+                        <li><strong>E</strong> should be protected in the same way as some areas of our own planet.</li>
+                    </ul>
+                </div>
+            </div>
+        `
+    },
+    { 
+        id: 34, 
+        type: "multiple-choice", 
+        text: "Martin Rees believes that the mining of asteroids", 
+        options: ["A", "B", "C", "D", "E"] 
+    },
+    { 
+        id: 35, 
+        type: "multiple-choice", 
+        text: "Daniel Wolpert suggests that the use of robots to get resources", 
+        options: ["A", "B", "C", "D", "E"] 
+    },
+    { 
+        id: 36, 
+        type: "multiple-choice", 
+        text: "Kathleen Richardson feels that the colonisation of other planets", 
+        options: ["A", "B", "C", "D", "E"] 
+    },
         // Questions 37–40: Multiple Choice
+{
+        id: "header-37-40",
+        type: "instruction",
+        text: `<div class="instruction-box" style="margin-top:30px;"><h2>Questions 37-40</h2><p>Choose the correct letter, <strong>A, B, C</strong> or <strong>D</strong>.</p></div>`
+    },
         { 
             id: 37, 
             type: "multiple-choice", 
